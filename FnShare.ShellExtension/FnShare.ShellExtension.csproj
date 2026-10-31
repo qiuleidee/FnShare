@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <EnableComHosting>true</EnableComHosting>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>FnShare.ShellExtension</AssemblyName>
+    <RootNamespace>FnShare.ShellExtension</RootNamespace>
+    <!-- 在 Linux 上构建 Windows 目标时，允许从 NuGet 获取 WindowsDesktop 目标包 -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- 菜单位图用 Bitmap.GetHbitmap 生成 GDI 位图，需 System.Drawing.Common；
+         构建产物 System.Drawing.Common.dll 须随扩展包一并放在 exe 同目录 -->
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="menu-share.png" />
+    <EmbeddedResource Include="menu-list.png" />
+    <EmbeddedResource Include="menu-gear.png" />
+    <EmbeddedResource Include="menu-folder.png" />
+    <None Remove="menu-share.png" />
+    <None Remove="menu-list.png" />
+    <None Remove="menu-gear.png" />
+    <None Remove="menu-folder.png" />
+  </ItemGroup>
+</Project>

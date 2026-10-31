@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>FnShare</AssemblyName>
+    <RootNamespace>FnShare</RootNamespace>
+    <Version>1.0.0</Version>
+    <!-- 应用图标：exe 文件图标（Windows 资源管理器中显示） -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <!-- 在 Linux 上构建 Windows 目标时，允许从 NuGet 获取 WindowsDesktop 目标包 -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <!-- 扩展工程在主工程目录内：排除其全部文件，避免主工程 glob 编入扩展源码
+         与扩展 obj 生成的 AssemblyInfo（会导致程序集属性重复 CS0579） -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);FnShare.ShellExtension\**</DefaultItemExcludes>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- 嵌入 app.ico，供各窗口运行时设为 Icon（标题栏与任务栏图标） -->
+    <EmbeddedResource Include="app.ico" />
+  </ItemGroup>
+</Project>
